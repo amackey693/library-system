@@ -1,7 +1,5 @@
 require 'pry'
 
-require 'pry'
-
 class User
   attr_accessor :name, :id, :is_admin
 

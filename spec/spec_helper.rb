@@ -11,5 +11,6 @@ RSpec.configure do |config|
     DB.exec("DELETE FROM users *;")
     DB.exec("DELETE FROM books *;")
     DB.exec("DELETE FROM checkouts *;")
+    DB.exec("DELETE FROM authors *;")
   end
 end
