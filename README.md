@@ -1,12 +1,12 @@
-# _APP NAME_
+# _Library System_
 
-#### _A practice application using Ruby, Gem & Pry. DATE_
+#### _A practice application using Ruby, Gem & Pry. DATE_May, 20th 2020_
 
-#### By _**YOUR NAME HERE**_
+#### By _**Allison Mackey, Josh Hellman, and Josey Kinnaman**_
 
 ## Description
 
-_This application will allow the user to ._ 
+_This application will allow the user to add books to their wishlist and view relationships between books and authors._ 
 
 ## Setup/Installation Requirements
 
@@ -22,13 +22,13 @@ _This application will allow the user to ._
 
 |   Behavior Description        |
 |-------------------------------|
-| 1.  []|
-| 2.  []|
-| 3.  []|
-| 4.  []|
-| 5.  []|
-| 6.  []|
-| 7.  []|
+| 1.  Allows admin to create, read, update, delete & list books in the catalog []| 
+| 2.  Allows admin to search for a book by author/title []|
+| 3.  Allows user to check a book out []|
+| 4.  Allows user to see all books previously checked out []|
+| 5.  Allows user to know when book is due back []|
+| 6.  Allows user to read a list of over due books[]|
+| 7.  Allows user to enter multiple Authors for a book[]|
 
 
 ## Known Bugs
