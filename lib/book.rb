@@ -32,4 +32,16 @@ class Book
     DB.exec("DELETE FROM books *;")
   end
 
+  def self.find(id)
+    book = DB.exec("SELECT * FROM books WHERE id = #{id};").first
+    name = book.fetch("name")
+    id = book.fetch("id").to_i
+    Book.new({name: name, id: id})
+  end
+
+  def update(name)
+    @name = name
+    DB.exec("UPDATE books SET name = '#{@name}' WHERE ID = #{@id};")
+  end
+
 end 
