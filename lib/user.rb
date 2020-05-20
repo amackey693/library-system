@@ -3,11 +3,11 @@ require 'pry'
 require 'pry'
 
 class User
-  attr_accessor :name, :id
+  attr_accessor :name, :id, :is_admin
 
   def initialize(attributes) 
     @name = attributes.fetch(:name)
-    @is_admin = false
+    @is_admin = attributes.fetch(:is_admin, false)
     @id = attributes.fetch(:id)
   end
 
@@ -21,7 +21,7 @@ class User
     returned_users.each do |user|
       name = user.fetch("name")
       is_admin = user.fetch("is_admin")
-      id = user.fetch('id')
+      id = user.fetch('id').to_i
       users.push(User.new({name: name, is_admin: is_admin, id: id}))
     end
     users
@@ -40,7 +40,7 @@ class User
     user = DB.exec("SELECT * FROM users WHERE id = #{id};").first
     name = user.fetch("name")
     is_admin = user.fetch("is_admin")
-    id = user.fetch('id')
+    id = user.fetch('id').to_i
     User.new({name: name, is_admin: is_admin, id: id})
   end
 
@@ -58,17 +58,17 @@ class User
   ## admin function 
   def self.search(name)
     name = name.downcase
-    book_names = Book.all.map {|b| b.name}
+    user_names = User.all.map {|b| b.name}
     result = []
-    names = book_names.grep(/#{name}/)
+    names = user_names.grep(/#{name}/)
     names.each do |n|
-      display_books = Book.all.select { |a| a.name == n }
-      result.concat(display_books)
+      display_users = User.all.select { |a| a.name.downcase == n }
+      result.concat(display_users)
     end
     result
   end
 
   def self.sort
-    Book.all.sort_by { |names| names.name }
+    User.all.sort_by { |user| user.name.downcase }
   end
 end 

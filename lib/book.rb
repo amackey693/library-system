@@ -17,7 +17,7 @@ class Book
     books = []
     returned_books.each do |book|
       name = book.fetch("name")
-      id = book.fetch('id')
+      id = book.fetch('id').to_i
       books.push(Book.new({name: name, id: id}))
     end
     books
@@ -60,6 +60,8 @@ class Book
     result
   end
   
-  
+  def self.sort()
+    Book.all.sort_by {|book| book.name}
+  end
 
 end 
