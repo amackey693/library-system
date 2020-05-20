@@ -1,7 +1,7 @@
 require 'pry'
 
 class Author 
-  attr_accessor :name, :id
+  attr_accessor :name,
 
   def initialize(attributes) 
     @name = attributes.fetch(:name)

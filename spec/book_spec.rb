@@ -84,6 +84,15 @@ describe '#Book' do
       expect(Book.sort).to(eq([book1, book2, book]))
     end
   end
+  describe('.author') do
+    it('find an Author by id')do
+    book = Book.new({name: "where the sidewalk ends", author_id: author.id, id: nil})
+    book.save
+    author = Author.new({name: "HP Lovecraft", id: nil})
+    author.save
+    expect(book.author).to(eq(author))
+  end
+end
 end
 
 

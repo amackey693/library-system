@@ -1,11 +1,12 @@
 require 'pry'
 
 class Book 
-  attr_accessor :name, :id
+  attr_accessor :name, :id, :author_id
 
   def initialize(attributes) 
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
+    @author_id = attributes.fetch(:author_id)
   end
 
   def ==(book_to_compare)
@@ -18,7 +19,8 @@ class Book
     returned_books.each do |book|
       name = book.fetch("name")
       id = book.fetch('id').to_i
-      books.push(Book.new({name: name, id: id}))
+      author_id = book.fetch("author_id").to_i
+      books.push(Book.new({name: name, author_id: author_id, id: id}))
     end
     books
   end
@@ -36,8 +38,8 @@ class Book
     book = DB.exec("SELECT * FROM books WHERE id = #{id};").first
     name = book.fetch("name")
     id = book.fetch("id").to_i
-    Book.new({name: name, id: id})
-  end
+    author_id = book.fetch("author_id").to_i
+    Book.new({name: name, author_id: author_id, id: id}))
 
   def update(name)
     @name = name
@@ -63,5 +65,10 @@ class Book
   def self.sort()
     Book.all.sort_by {|book| book.name}
   end
+  
+def author
+    Author.find(@author_id)
+  end
+end
 
 end 
