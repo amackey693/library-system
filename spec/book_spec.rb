@@ -24,23 +24,34 @@ describe '#Book' do
       expect(Book.all).to(eq([book1, book2]))
     end
   end
-
-#   describe('') do
-#     it('')do
-#     expect().to(eq())
-#   end
-# end
-
-#   describe('') do
-#     it('')do
-#     expect().to(eq())
-#   end
-# end
-
-#   describe('') do
-#     it('')do
-#     expect().to(eq())
-#   end
-# end
+  describe('.clear') do
+    it('clears all books')do
+      book1 = Book.new({ name: "Dracula", id: nil})
+      book1.save
+      book2 = Book.new({ name: "Call of the Wild", id: nil})
+      book2.save
+      Book.clear
+     expect(Book.all).to(eq([]))
+   end
+  end
 
 end
+
+#   describe('') do
+#     it('')do
+#     expect().to(eq())
+#   end
+# end
+
+#   describe('') do
+#     it('')do
+#     expect().to(eq())
+#   end
+# end
+
+#   describe('') do
+#     it('')do
+#     expect().to(eq())
+#   end
+# end
+

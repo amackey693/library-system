@@ -27,4 +27,9 @@ class Book
     result = DB.exec("INSERT INTO books (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first.fetch("id").to_i
   end
+
+  def self.clear
+    DB.exec("DELETE FROM books *;")
+  end
+
 end 
