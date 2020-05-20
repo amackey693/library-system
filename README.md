@@ -30,6 +30,10 @@ _This application will allow the user to add books to their wishlist and view re
 | 6.  Allows user to read a list of over due books[]|
 | 7.  Allows user to enter multiple Authors for a book[]|
 
+Stretch Goalzzz
+- allow author to be generated when admin enters in book info
+- allow query for when users search for an author, if the author name already exists prompt user with author name? 
+- allow a "sign in" with a password & assign an admin 
 
 ## Known Bugs
 
@@ -37,7 +41,7 @@ _No known bugs at this time_
 
 ## Support and contact details
 
-_If you have any questions or any issues please feel free to submit an issue here: https://github.com/username/reponame/issues_
+_If you have any questions or any issues please feel free to submit an i\ssue here: https://github.com/username/reponame/issues_
 
 ## Technologies Used
 
