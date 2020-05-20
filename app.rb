@@ -4,6 +4,8 @@ require('./lib/user')
 require('./lib/book')
 require('./lib/author')
 require('pry')
+require("pg")
+DB = PG.connect({:dbname => "library_system"})
 also_reload('lib/**/*.rb')
 
 
