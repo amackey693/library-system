@@ -25,5 +25,6 @@ class Book
 
   def save
     result = DB.exec("INSERT INTO books (name) VALUES ('#{@name}') RETURNING id;")
-    @id = result.first.fetch("id")
+    @id = result.first.fetch("id").to_i
+  end
 end 

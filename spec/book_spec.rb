@@ -17,9 +17,9 @@ describe '#Book' do
 
   describe('#save') do
     it('saves a book')do
-      book = Book.new({ name: "Dracula", id: nil})
-      book.save
-      book1 = Book.new({ name: "Call of the Wild", id: nil})
+      book1 = Book.new({ name: "Dracula", id: nil})
+      book1.save
+      book2 = Book.new({ name: "Call of the Wild", id: nil})
       book2.save
       expect(Book.all).to(eq([book1, book2]))
     end
