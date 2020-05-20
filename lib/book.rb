@@ -26,7 +26,7 @@ class Book
   end
 
   def save
-    result = DB.exec("INSERT INTO books (name) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO books (name, author_id) VALUES ('#{@name}', #{author_id}) RETURNING id;")
     @id = result.first.fetch("id").to_i
   end
 
@@ -39,7 +39,8 @@ class Book
     name = book.fetch("name")
     id = book.fetch("id").to_i
     author_id = book.fetch("author_id").to_i
-    Book.new({name: name, author_id: author_id, id: id}))
+    Book.new({name: name, author_id: author_id, id: id})
+  end
 
   def update(name)
     @name = name
@@ -64,11 +65,22 @@ class Book
   
   def self.sort()
     Book.all.sort_by {|book| book.name}
+  end 
+
+  def self.find_by_author(auth_id)
+    books = []
+    returned_books = DB.exec("SELECT * FROM books WHERE author_id = #{auth_id};")
+    returned_books.each() do | book |
+      name = book.fetch("name")
+      id = book.fetch("id").to_i
+      books.push(Book.new({name: name, author_id: auth_id, id: id}))
+    end
+    books
   end
   
-def author
+  def author
     Author.find(@author_id)
   end
 end
 
-end 
+ 

@@ -8,36 +8,31 @@ also_reload('lib/**/*.rb')
 
 
 # EXAMPLES FOR GET, POST, PATCH & DELETE
-# get('/') do
-#   @albums = Album.sort
-#   erb(:albums) #erb file name
-# end
+get('/') do
+  @authors = Author.sort
+  erb(:library) #erb file name
+end
 
-# post('/albums') do ## Adds album to list of albums, cannot access in URL bar
-#   name = params[:album_name]
-#   artist = params[:album_artist]
-#   year = params[:album_year]
-#   genre = params[:album_genre]
-#   song = params[:song_id]
-#   in_inventory = params[:in_inventory]
-#   album = Album.new(name, nil, artist, genre, year)
-#   album.save()
-#   redirect to('/albums')
-# end
+post('/authors') do ## Adds album to list of albums, cannot access in URL bar
+  name = params[:album_name]
+  author = Author.new(name, nil, artist, genre, year)
+  author.save()
+  redirect to('/library')
+end
 
-# patch('/albums/:id') do
-#   @album = Album.find(params[:id].to_i())
-#   @albums = Album.all
-#   if params[:buy]
-#     @album.sold()
-#   else  
-#     @album.update(params[:name])
-#   end
-#   erb(:albums)
-# end
+patch('/authors/:id') do
+  @author = Author.find(params[:id].to_i())
+  @authors = Author.all
+  if params[:buy]
+    @author.sold()
+  else  
+    @author.update(params[:name])
+  end
+  erb(:library)
+end
 
-# delete('/albums/:id') do
-#   @album = Album.find(params[:id].to_i())
-#   @album.delete()
-#   redirect to('/albums')
-# end
+delete('/authors/:id') do
+  @author = Author.find(params[:id].to_i())
+  @author.delete()
+  redirect to('/library')
+end

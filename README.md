@@ -22,13 +22,21 @@ _This application will allow the user to add books to their wishlist and view re
 
 |   Behavior Description        |
 |-------------------------------|
-| 1.  Allows admin to create, read, update, delete & list books in the catalog []| 
-| 2.  Allows admin to search for a book by author/title []|
+| 1.  Allows admin to create, read, update, delete & list books in the catalog [√]| 
+| 2.  Allows admin to search for a book by author/title [√]|
 | 3.  Allows user to check a book out []|
 | 4.  Allows user to see all books previously checked out []|
 | 5.  Allows user to know when book is due back []|
 | 6.  Allows user to read a list of over due books[]|
 | 7.  Allows user to enter multiple Authors for a book[]|
+
+USER TO ADD 
+a checkout method -> allows user to check out a book & gives a "due date" for the user. 
+a key that lists all the books the user has "checked out" currently?
+a return method --> allows the book to be returned to "library" ?
+
+we need a KEY on book "in_library" true or false? automatically true unless "checked out" returned to true when user checks book back in. 
+
 
 Stretch Goalzzz
 - allow author to be generated when admin enters in book info

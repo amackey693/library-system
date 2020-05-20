@@ -1,7 +1,7 @@
 require 'pry'
 
 class Author 
-  attr_accessor :name,
+  attr_accessor :name, :id
 
   def initialize(attributes) 
     @name = attributes.fetch(:name)
@@ -62,6 +62,10 @@ class Author
   
   def self.sort()
     Author.all.sort_by {|author| author.name.downcase}
+  end
+
+  def find_all_books
+    Book.find_by_author(@id)
   end
 
 end 

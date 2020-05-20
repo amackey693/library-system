@@ -85,6 +85,22 @@ describe '#Author' do
       expect(Author.sort).to(eq([author2, author, author1]))
     end
   end
+
+  describe('#find_all_books') do
+    it('will return all books by an author') do
+      author = Author.new({name: "Clive Barker", id: nil})
+      author.save
+      author2 = Author.new({name: "Christopher Paloni", id: nil})
+      author2.save
+      book = Book.new({ name: "Call of the Wild", author_id: author.id, id: nil})
+      book.save
+      book1 = Book.new({ name: "Dracula", author_id: author.id, id: nil})
+      book1.save
+      book2 = Book.new({ name: "Where the sidewalk ends", author_id: author2.id, id: nil})
+      book2.save
+    expect(author.find_all_books).to(eq([book, book1]))
+    end
+  end
 end
 
 
