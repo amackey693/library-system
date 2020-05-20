@@ -9,5 +9,10 @@ describe '#Book' do
     end
   end
 
+  describe('.all') do
+    it("returns and empty array if  there are no books.") do
+      expect(Book.all)to.(eq([]))
+    end
+  end
 
 end

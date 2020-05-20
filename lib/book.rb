@@ -13,6 +13,9 @@ class Book
   end
 
   def self.all
-    # returned_books =
+    returned_books = DB.exec("SELECT * FROM books")
+    books = []
+    returned_books.each do |book|
+      name = book.fetch("name")
   end
 end 
