@@ -50,11 +50,11 @@ class Book
 
   def self.search(name)
     name = name.downcase
-    book_names = Book.all.map {|b| b.name}
+    book_names = Book.all.map {|b| b.name.downcase}
     result = []
     names = book_names.grep(/#{name}/)
     names.each do |n|
-      display_books = Book.all.select { |a| a.name == n }
+      display_books = Book.all.select { |a| a.name.downcase == n }
       result.concat(display_books)
     end
     result

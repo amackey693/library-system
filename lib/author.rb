@@ -50,18 +50,18 @@ class Author
 
   def self.search(name)
     name = name.downcase
-    author_names = Author.all.map {|a| a.name}
+    author_names = Author.all.map {|a| a.name.downcase}
     result = []
     names = author_names.grep(/#{name}/)
     names.each do |n|
-      display_authors = Author.all.select { |a| a.name == n }
+      display_authors = Author.all.select { |a| a.name.downcase == n }
       result.concat(display_authors)
     end
     result
   end
   
   def self.sort()
-    Author.all.sort_by {|author| author.name}
+    Author.all.sort_by {|author| author.name.downcase}
   end
 
 end 

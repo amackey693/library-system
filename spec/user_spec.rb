@@ -72,11 +72,11 @@ describe '#User' do
   end
   describe('.search') do
     it('returns a list of users that match the search name')do
-      user = User.new({name: "Allison", id: nil})
-      user.save
+      user1 = User.new({name: "Allison", id: nil})
+      user1.save
       user2 = User.new({name: "Josh", id: nil})
       user2.save
-      expect(User.search("josh")).to(eq([user2]))
+      expect(User.search("Josh")).to(eq([user2]))
     end
   end
 

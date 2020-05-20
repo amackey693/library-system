@@ -56,7 +56,7 @@ class User
   ## admin function 
   def self.search(name)
     name = name.downcase
-    user_names = User.all.map {|b| b.name}
+    user_names = User.all.map {|u| u.name.downcase}
     result = []
     names = user_names.grep(/#{name}/)
     names.each do |n|

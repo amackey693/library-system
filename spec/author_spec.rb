@@ -4,7 +4,7 @@ describe '#Author' do
   describe("#==")do
     it("is the same author if it has the same attributes as another author")do
       author = Author.new({ name: "Anne Rice", id: nil})
-      Author1 = Author.new({ name: "Anne Rice", id: nil})
+      author1 = Author.new({ name: "Anne Rice", id: nil})
       expect(author).to(eq(author1))
     end
   end
@@ -36,11 +36,11 @@ describe '#Author' do
   end
   describe(".find") do 
     it("finds a author by id") do
-      author = author.new({name: "HP Lovecraft", id: nil})
+      author = Author.new({name: "HP Lovecraft", id: nil})
       author.save
-      author2 = author.new({name: "Cormac MCCarthy", id: nil})
+      author2 = Author.new({name: "Cormac MCCarthy", id: nil})
       author2.save
-      expect(author.find(author.id)).to(eq(author))
+      expect(Author.find(author.id)).to(eq(author))
     end
   end
 
@@ -48,8 +48,8 @@ describe '#Author' do
     it("updates a author by id") do 
       author = Author.new({name: 'Cormac McCarthy', id: nil})
       author.save
-      book.update("It")
-      expect(book.name).to(eq("It"))
+      author.update("It")
+      expect(author.name).to(eq("It"))
     end
   end
   
@@ -59,17 +59,18 @@ describe '#Author' do
       author.save
       author2 = Author.new({name: "Cormac McCarthy", id: nil})
       author2.save
-      Author.delete
+      author.delete
       expect(Author.all).to(eq([author2]))
     end
   end
+  
   describe('.search') do
     it('returns a list of authors that match the search name')do
       author = Author.new({name: "HP Lovecraft", id: nil})
       author.save
       author2 = Author.new({name: "Edgar Allen Poe", id: nil})
       author2.save
-      expect(Author.search("the")).to(eq([author, author2]))
+      expect(Author.search("P")).to(eq([author, author2]))
     end
   end
 
@@ -81,7 +82,7 @@ describe '#Author' do
         author1.save
         author2 = Author.new({name: "Christopher Paloni", id: nil})
         author2.save
-      expect(Author.sort).to(eq([author, author2, author1]))
+      expect(Author.sort).to(eq([author2, author, author1]))
     end
   end
 end
