@@ -44,4 +44,22 @@ class Book
     DB.exec("UPDATE books SET name = '#{@name}' WHERE ID = #{@id};")
   end
 
+  def delete()
+    DB.exec("DELETE FROM books WHERE id = #{@id};")
+  end
+
+  def self.search(name)
+    name = name.downcase
+    book_names = Book.all.map {|b| b.name}
+    result = []
+    names = book_names.grep(/#{name}/)
+    names.each do |n|
+      display_books = Book.all.select { |a| a.name == n }
+      result.concat(display_books)
+    end
+    result
+  end
+  
+  
+
 end 

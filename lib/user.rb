@@ -39,13 +39,36 @@ class User
   def self.find(id)
     user = DB.exec("SELECT * FROM users WHERE id = #{id};").first
     name = user.fetch("name")
-    id = user.fetch("id").to_i
-    Book.new({name: name, id: id})
+    is_admin = user.fetch("is_admin")
+    id = user.fetch('id')
+    User.new({name: name, is_admin: is_admin, id: id})
   end
 
   def update(name)
     @name = name
-    DB.exec("UPDATE albums SET name = '#{@name}' WHERE ID = #{@id};")
+    DB.exec("UPDATE users SET name = '#{@name}' WHERE ID = #{@id};")
   end
 
+  ##only allow to delete if user.is_admin == true, set up in the app.rb? or implement in delete method?
+  def delete
+    DB.exec("DELETE FROM users WHERE id = #{@id};")
+    # DB.exec("DELETE FROM checkouts WHERE user_id = #{@id};") --> delete books from users checkout history, but does not delete the books from the database??
+  end
+
+  ## admin function 
+  def self.search(name)
+    name = name.downcase
+    book_names = Book.all.map {|b| b.name}
+    result = []
+    names = book_names.grep(/#{name}/)
+    names.each do |n|
+      display_books = Book.all.select { |a| a.name == n }
+      result.concat(display_books)
+    end
+    result
+  end
+
+  def self.sort
+    Book.all.sort_by { |names| names.name }
+  end
 end 
