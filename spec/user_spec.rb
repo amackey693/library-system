@@ -92,10 +92,34 @@ describe '#User' do
     end
   end
 
-  # describe("#checkout")do
-  #   it("allows a user to checkout a book")do
-  #     @user1.checkout(@book)
-  #     expect(@book.is_available).to(eq(false))
-  #   end
-  # end
+  describe("#checkout")do
+    it("allows a user to checkout a book")do  
+      author = Author.new({name: "HP Lovecraft", id: nil})
+      author.save
+      book = Book.new({ name: "The Outsider", author_id: author.id, id: nil})
+      book.save
+      user3 = User.new({name: "Jozy", id: nil})
+      user3.save
+      user3.checkout(book)
+      expect(book.is_available).to(eq(false))
+    end
+  end
+
+  describe("#my_books")do
+    it("allows a user to checkout a book")do  
+      author = Author.new({name: "HP Lovecraft", id: nil})
+      author.save
+      book = Book.new({ name: "The Outsider", author_id: author.id, id: nil})
+      book.save
+      # book1 = Book.new({ name: "TEST", author_id: author.id, id: nil})
+      # book1.save
+      user3 = User.new({name: "Jozy", id: nil})
+      user3.save
+      user3.checkout(book)
+      books = user3.my_books
+      
+      expect(user3.my_books).to(eq(["The Outsider June/04/2020"]))
+    end
+  end
+
 end

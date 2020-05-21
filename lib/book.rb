@@ -1,12 +1,13 @@
 require 'pry'
 
 class Book 
-  attr_accessor :name, :id, :author_id
+  attr_accessor :name, :id, :author_id, :is_available
 
   def initialize(attributes) 
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
     @author_id = attributes.fetch(:author_id)
+    @is_available = attributes.fetch(:is_available, true)
   end
 
   def ==(book_to_compare)
@@ -81,6 +82,12 @@ class Book
   def author
     Author.find(@author_id)
   end
+
+  def check_out
+    @is_available = false
+    DB.exec("UPDATE books SET is_available = #{@is_available} WHERE id = #{@id};")
+  end
+
 end
 
  

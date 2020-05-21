@@ -1,4 +1,5 @@
 require 'pry'
+require 'Date'
 
 class User
   attr_accessor :name, :id, :is_admin
@@ -69,4 +70,45 @@ class User
   def self.sort
     User.all.sort_by { |user| user.name.downcase }
   end
+
+  def checkout(book)
+    book.check_out
+    date = Date.today
+    due_date = (Date.today + 14).strftime("%B/%d/%Y")
+    result = DB.exec("INSERT INTO checkouts (book_id, user_id, checkout_date, due_date) VALUES (#{book.id}, #{@id}, '#{date}', '#{due_date}') RETURNING id;")
+    @transaction = result.first.fetch("id").to_i
+  end
+
+  def my_books()
+    books_out = DB.exec("SELECT * FROM checkouts WHERE user_id = #{@id}").first
+    my_books = []
+    books_out.each do |b|
+      # binding.pry
+      due_date = books_out.fetch("due_date")
+      book = books_out.fetch("book_id").to_i
+      book_title = (Book.find(book)).name
+      results = (book_title + " " + due_date)
+      my_books.push(results)
+    end
+    my_books
+  end
+
+  # checked_books.push(due_date)
+  # due_date = Date.today + 14 
+  # date = Date.today
+  
+  # def my_books
+  #   my_books = []
+    
+  #   books = DB.exec("SELECT * FROM checkouts WHERE user_id = ")
+  #   books.each() do |book|
+
+  #   end
+  
 end 
+
+# should we be returning/saving something when we run the checkout method?
+# can we create a "timestamp" & an array of books "checked out" within the checkout method? 
+
+# timestamp "update" attributes in the checkout method could we create that attribute in "book" under our check_out method? ==> Time.new() 
+# checkin method reverse of checkout --> DELETE checkouts id WHERE id = #{id};

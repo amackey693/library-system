@@ -6,6 +6,9 @@ require 'author'
 require 'pry'
 
 DB = PG.connect({:dbname => 'library_system_test'}) 
+
+puts DB.db
+
 RSpec.configure do |config|
   config.after(:each) do  
     DB.exec("DELETE FROM users *;")
