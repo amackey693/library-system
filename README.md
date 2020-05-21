@@ -34,7 +34,6 @@ USER TO ADD
 a checkout method -> allows user to check out a book & gives a "due date" for the user. 
 a key that lists all the books the user has "checked out" currently?
 a return method --> allows the book to be returned to "library" ?
-
 we need a KEY on book "in_library" true or false? automatically true unless "checked out" returned to true when user checks book back in. 
 
 

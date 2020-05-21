@@ -1,8 +1,14 @@
 <h1> Aljojo County Library</h1>
 
-<h3> Availaible book</h3>
+<h3> Availaible books</h3>
 
 <% if @books.any? %>
   <ul>
-  <%@books.each do |book| %>
-    
+  <% @books.each do |book| %>
+    <li> <%= book.name%> </li>
+  <% end %>
+  </ul>
+  <% else %>
+<p> All books are currently checked out. Try again later </p>
+<% end  %>
+<a href ="/library/admin"> Admin log </a>

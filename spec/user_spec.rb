@@ -91,4 +91,11 @@ describe '#User' do
       expect(User.sort).to(eq([user1, user2, user3]))
     end
   end
+
+  # describe("#checkout")do
+  #   it("allows a user to checkout a book")do
+  #     @user1.checkout(@book)
+  #     expect(@book.is_available).to(eq(false))
+  #   end
+  # end
 end

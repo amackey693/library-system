@@ -86,6 +86,12 @@ describe '#Book' do
     end
   end
 
+  describe("#is_available") do
+    it("marks a book as checked out") do 
+      expect(@book.is_available).to(eq("t"))
+    end
+  end
+
 end
 
 
