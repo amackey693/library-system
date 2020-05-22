@@ -111,14 +111,12 @@ describe '#User' do
       author.save
       book = Book.new({ name: "The Outsider", author_id: author.id, id: nil})
       book.save
-      # book1 = Book.new({ name: "TEST", author_id: author.id, id: nil})
-      # book1.save
+      book1 = Book.new({ name: "TEST", author_id: author.id, id: nil})
+      book1.save
       user3 = User.new({name: "Jozy", id: nil})
-      user3.save
-      user3.checkout(book)
-      books = user3.my_books
-      
-      expect(user3.my_books).to(eq(["The Outsider June/04/2020"]))
+      user3.save 
+      user3.checkout(book1)   
+      expect(user3.my_books).to(eq(["TEST June/04/2020"]))
     end
   end
 

@@ -73,24 +73,25 @@ class User
 
   def checkout(book)
     book.check_out
+    # binding.pry
     date = Date.today
     due_date = (Date.today + 14).strftime("%B/%d/%Y")
-    result = DB.exec("INSERT INTO checkouts (book_id, user_id, checkout_date, due_date) VALUES (#{book.id}, #{@id}, '#{date}', '#{due_date}') RETURNING id;")
-    @transaction = result.first.fetch("id").to_i
+    DB.exec("INSERT INTO checkouts (book_id, user_id, checkout_date, due_date) VALUES (#{book.id}, #{@id}, '#{date}', '#{due_date}') RETURNING id;")
+    # @transaction = result.first.fetch("id").to_i
   end
 
   def my_books()
-    books_out = DB.exec("SELECT * FROM checkouts WHERE user_id = #{@id}").first
-    my_books = []
+    books_out = DB.exec("SELECT * FROM checkouts WHERE user_id = #{@id};")
+    booklist = []
     books_out.each do |b|
       # binding.pry
-      due_date = books_out.fetch("due_date")
-      book = books_out.fetch("book_id").to_i
+      book = b.fetch("book_id").to_i
+      due_date = b.fetch("due_date")
       book_title = (Book.find(book)).name
       results = (book_title + " " + due_date)
-      my_books.push(results)
+      booklist.push(results)
     end
-    my_books
+    booklist
   end
 
   # checked_books.push(due_date)
